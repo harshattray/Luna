@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Homefront, {
+	HomefrontContainer,
+	HomefrontImage,
+	HomefrontPane,
+	HomefrontSubTitle,
+	HomefrontTitle,
+} from "./components/homefront";
+import homefrontData from "./fixtures/jumbo.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+	return (
+		<HomefrontContainer>
+			{homefrontData.map((chunks) => {
+				return (
+					<Homefront key={chunks.id} direction={chunks.direction}>
+						<HomefrontPane>
+							<HomefrontTitle>{chunks.title}</HomefrontTitle>
+							<HomefrontSubTitle>{chunks.subTitle}</HomefrontSubTitle>
+						</HomefrontPane>
+						<HomefrontPane>
+							<HomefrontImage src={chunks.image}></HomefrontImage>
+						</HomefrontPane>
+					</Homefront>
+				);
+			})}
+		</HomefrontContainer>
+	);
 }
-
-export default App;
